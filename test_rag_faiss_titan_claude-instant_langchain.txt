@@ -1,0 +1,39 @@
+# demo attributes
+file type: csv
+file attributes: PATH, ROW
+data type: structured text
+record format: text,text
+record attributes: QUESTION, ANSWER (LangChain text metadata?)
+record counts: 412 mapreduce, 182 sagemaker
+embeddings model: amazon.titan-embed-text-v1
+language model: anthropic.claude-instant-v1
+vector database: N/A, in-memory FAISS
+chunk span: 2000 characters
+chunk overlap: 400 characters
+document counts: 260 mapreduce, 153 sagemaker
+after splitting and chunking: 265 mapreduce, 154 sagemaker
+
+# LangChain document structure
+  Document(page_content='question: QUESTION\nanswer: ANSWER', metadata={'source': PATH, 'row': ROW})
+document metadata: source, row
+text metadata: ?
+
+# Evaluation
+SageMaker tenant ['./data/Amazon_SageMaker_FAQs.csv']
+
+>> what reinforcement learning toolkits are available in sagemaker
+Coach and Ray RLLib
+
+# Evaluation
+MapReduce tenant ['./data/Amazon_EMR_FAQs.csv']
+
+>> what reinforcement learning toolkits are available in sagemaker
+Amazon SageMaker provides built-in algorithms and frameworks for reinforcement learning including:
+- Amazon SageMaker RL for building and training reinforcement learning models using popular frameworks like TensorFlow, PyTorch and MXNet.
+- Amazon SageMaker Neo for training machine learning models directly on GPUs and TPUs using frameworks like TensorFlow and PyTorch.
+- Amazon SageMaker Debugger to help debug and improve reinforcement learning models.
+- Amazon SageMaker RL Coach for developing and training reinforcement learning agents using RLlib and other libraries.
+
+# Findings
+In context questions: If a topic is already covered RAG may adversely impact response quality for that topic.
+Out of context questions: The gap in response quality between Claude 2 and Claude Instant is significant.
